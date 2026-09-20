@@ -455,3 +455,13 @@ AddEventHandler('onResourceStop', function(resource)
         DeleteEntity(depotPed)
     end
 end)
+
+if Config.Debug then
+    RegisterCommand('buscoords', function()
+        local coords = GetEntityCoords(PlayerPedId())
+        local heading = GetEntityHeading(PlayerPedId())
+        local text = string.format('vector4(%.2f, %.2f, %.2f, %.2f)', coords.x, coords.y, coords.z, heading)
+        print(text)
+        TriggerEvent('chat:addMessage', { args = { text } })
+    end, false)
+end
